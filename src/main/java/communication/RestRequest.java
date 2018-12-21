@@ -12,7 +12,6 @@ public class RestRequest {
     }
     public void sendRequest(String requestUrl){
         try{
-
             URL url= new URL(requestUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -36,5 +35,11 @@ public class RestRequest {
             e.printStackTrace();
         }
 
+    }
+    public Byte[] getMedia(String requestUrl,String mediaType)
+    {
+        Byte[]result=null;
+
+        return result;
     }
 }
