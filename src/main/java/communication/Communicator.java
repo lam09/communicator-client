@@ -31,7 +31,11 @@ public class Communicator {
         try {
             IO.Options opt=new IO.Options();
             opt.forceNew=true;
-            socketio = IO.socket("http://localhost:13001/",opt);
+            opt.reconnection=true;
+            opt.reconnectionDelay=1000;
+            opt.reconnectionDelayMax=5000;
+            opt.reconnectionAttempts=9999999;
+            socketio = IO.socket("http://172.22.86.177:13001/",opt);
             socketManager=socketio.io();
             if (socketio != null) {
                 System.out.println("created socket io");
@@ -39,6 +43,8 @@ public class Communicator {
                 socketio.on(Socket.EVENT_CONNECT_ERROR, handleOnConnectionError);
                 socketio.on(Socket.EVENT_DISCONNECT, handleOnDisconnection);
                 socketio.on("login",handleOnNewClientInit);
+                socketio.on("new-food", handleOnNewEvent1);
+
                 socketio.on("event1", handleOnNewEvent1);
                 socketio.on("event2", handleOnNewEvent1);
                 socketio.connect();

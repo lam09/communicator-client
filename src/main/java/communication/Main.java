@@ -34,7 +34,7 @@ public class Main  {
                     communicator.initClient();
                     Random rand= new Random();
                     while (true) {
-                        String event="event1";//+ (rand.nextInt(2)+1);
+                        String event="new-food";//+ (rand.nextInt(2)+1);
                         System.out.println("Client " + communicator.clientId+" send " + event);
                         communicator.sendEvent(event);
 //                        communicator.socketio.emit(event,Utils.toJson(new EventData("0",event)));
@@ -45,11 +45,10 @@ public class Main  {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        //break;
+                        break;
                     }
                 }
             }).start();
-
         }
 //        request.sendRequest("http://localhost:12001/admin/getMenu");
     }

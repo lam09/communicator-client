@@ -29,7 +29,7 @@ public class RestRequest {
                 System.out.println(output);
                 builder.append(output);
             }
-            System.out.println(builder.toString());
+          //  System.out.println(builder.toString());
         }
         catch (Exception e){
             e.printStackTrace();
@@ -39,7 +39,14 @@ public class RestRequest {
     public Byte[] getMedia(String requestUrl,String mediaType)
     {
         Byte[]result=null;
-
         return result;
+    }
+
+    public static void main(String[] args){
+        RestRequest rest = new RestRequest();
+        Long start = System.currentTimeMillis();
+        rest.sendRequest("http://172.22.86.177:12001/admin/getMenu");
+        Long latency=System.currentTimeMillis()-start;
+        System.out.println("Latency: "+latency);
     }
 }
