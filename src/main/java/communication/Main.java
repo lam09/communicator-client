@@ -41,11 +41,11 @@ public class Main  {
                       //    communicator.socketio.emit(event,new EventData(communicator.clientId,event));
                         //                       // System.out.println("Client " + communicator.clientId);
                         try {
-                            sleep(1000L);
+                            sleep(5000L);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        break;
+                        //break;
                     }
                 }
             }).start();

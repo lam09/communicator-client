@@ -9,6 +9,7 @@ import io.socket.client.Manager;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter.Listener;
 import org.apache.log4j.Logger;
+import Utils.Constant;
 
 
 import java.net.URISyntaxException;
@@ -35,7 +36,7 @@ public class Communicator {
             opt.reconnectionDelay=1000;
             opt.reconnectionDelayMax=5000;
             opt.reconnectionAttempts=9999999;
-            socketio = IO.socket("http://172.22.86.177:13001/",opt);
+            socketio = IO.socket(Constant.SERVER_URL,opt);
             socketManager=socketio.io();
             if (socketio != null) {
                 System.out.println("created socket io");
@@ -44,7 +45,6 @@ public class Communicator {
                 socketio.on(Socket.EVENT_DISCONNECT, handleOnDisconnection);
                 socketio.on("login",handleOnNewClientInit);
                 socketio.on("new-food", handleOnNewEvent1);
-
                 socketio.on("event1", handleOnNewEvent1);
                 socketio.on("event2", handleOnNewEvent1);
                 socketio.connect();

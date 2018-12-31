@@ -10,6 +10,28 @@ public class RestRequest {
     public RestRequest (){
 
     }
+    String URL_GET = "http://localhost:12001/food/get";
+
+    StringBuilder builder;
+
+    public String getFoodUrl(RestReqestParam... param)
+    {
+        builder = new StringBuilder();
+        builder.append(URL_GET);
+        if(param.length>0)
+        {
+            builder.append("?");
+            for(RestReqestParam reqestParam:param)
+            {
+                builder.append(reqestParam.param+"="+reqestParam.value);
+            }
+        }
+        return builder.toString();
+    }
+
+
+
+
     public void sendRequest(String requestUrl){
         try{
             URL url= new URL(requestUrl);
@@ -45,8 +67,18 @@ public class RestRequest {
     public static void main(String[] args){
         RestRequest rest = new RestRequest();
         Long start = System.currentTimeMillis();
-        rest.sendRequest("http://172.22.86.177:12001/admin/getMenu");
+        rest.sendRequest("http://localhost:12001/food/get?serial=1");
         Long latency=System.currentTimeMillis()-start;
-        System.out.println("Latency: "+latency);
+       System.out.println("Latency: "+latency);
+   //     RestReqestParam param=new RestReqestParam("serial","1");
+
+    }
+    public static class RestReqestParam{
+        String param;
+        String value;
+        public RestReqestParam(String param,String value){
+            this.param=param;
+            this.value=value;
+        }
     }
 }
