@@ -1,6 +1,6 @@
 package communication;
 
-import Utils.Utils;
+import communication.rests.RestRequest;
 
 import java.util.Random;
 

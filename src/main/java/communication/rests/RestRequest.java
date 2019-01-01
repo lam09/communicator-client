@@ -1,4 +1,7 @@
-package communication;
+package communication.rests;
+
+import communication.FoodApi;
+import communication.SpringFoodApi;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -29,10 +32,7 @@ public class RestRequest {
         return builder.toString();
     }
 
-
-
-
-    public void sendRequest(String requestUrl){
+    public String sendRequest(String requestUrl){
         try{
             URL url= new URL(requestUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -48,13 +48,13 @@ public class RestRequest {
             StringBuilder builder = new StringBuilder();
             String output;
             while ((output=br.readLine())!=null){
-                System.out.println(output);
                 builder.append(output);
             }
-          //  System.out.println(builder.toString());
+            return builder.toString();
         }
         catch (Exception e){
             e.printStackTrace();
+            return null;
         }
 
     }
@@ -65,9 +65,10 @@ public class RestRequest {
     }
 
     public static void main(String[] args){
-        RestRequest rest = new RestRequest();
+        FoodApi foodApi = new SpringFoodApi();
         Long start = System.currentTimeMillis();
-        rest.sendRequest("http://localhost:12001/food/get?serial=1");
+        String s = foodApi.getFoodById("1");
+        System.out.println(s);
         Long latency=System.currentTimeMillis()-start;
        System.out.println("Latency: "+latency);
    //     RestReqestParam param=new RestReqestParam("serial","1");

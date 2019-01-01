@@ -1,4 +1,4 @@
-package communication;
+package communication.socketio;
 
 public class Event {
     public final static String NEWORDER = "new-order";
