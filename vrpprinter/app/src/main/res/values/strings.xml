@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VRPprinter</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_file_explore">FileExplore</string>
+    <string name="title_activity_print">PrintActivity</string>
+    <string name="print_string">Hello printer</string>
+</resources>
